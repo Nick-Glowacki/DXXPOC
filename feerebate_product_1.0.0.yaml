@@ -1,0 +1,33 @@
+product: 1.0.0
+info:
+  name: feerebate
+  title: FeeRebate
+  version: 1.0.0
+visibility:
+  view:
+    enabled: true
+    type: public
+    tags: []
+    orgs: []
+  subscribe:
+    enabled: true
+    type: authenticated
+    tags: []
+    orgs: []
+apis:
+  servicecontrollerservice:
+    $ref: servicecontrollerservice_1.0.0.yaml
+  feeRebateREST:
+    $ref: feeRebateREST_1.0.0.yaml
+plans:
+  silverplan:
+    title: Silver Plan
+    apis: {}
+    rate-limits:
+      rate-limit-1:
+        hard-limit: true
+        value: 10/1minute
+  gold:
+    title: Gold Plan
+    description: Default Plan
+    approval: true

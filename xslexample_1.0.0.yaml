@@ -1,0 +1,137 @@
+swagger: '2.0'
+info:
+  x-ibm-name: xslexample
+  title: xslExample
+  version: 1.0.0
+schemes:
+  - https
+host: $(catalog.host)
+basePath: /xslexample
+consumes:
+  - application/xml
+  - application/json
+produces:
+  - application/xml
+  - application/json
+securityDefinitions:
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+security:
+  - clientIdHeader: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  assembly:
+    execute:
+      - operation-switch:
+          title: operation-switch
+          case:
+            - operations:
+                - verb: post
+                  path: /
+              execute:
+                - xslt:
+                    title: xslt
+                    input: true
+                    version: 1.0.0
+                    source: "<?xml version=\"1.0\" ?>\n<xsl:stylesheet version=\"1.0\"\n  xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">\n\n   <!-- IdentityTransform -->\n   <xsl:template match=\"/\">\n         <xsl:copy>\n               <xsl:apply-templates select=\"@* | node()\" />\n         </xsl:copy>\n   </xsl:template>\n   \n   <xsl:template match=\"@* | node()\">\n         <xsl:copy>\n               <xsl:apply-templates select=\"@* | node()\" />\n         </xsl:copy>\n   </xsl:template>\n   \n   <xsl:template match=\"new-property-1\">\n         <xsl:element name=\"new-xform-property-1\">\n               <xsl:apply-templates select=\"@* | node()\" />\n         </xsl:element>\n   </xsl:template>\n   \n   <xsl:template match=\"new-property-2\">\n         <xsl:element name=\"new-xform-property-2\">\n               <xsl:apply-templates select=\"@* | node()\" />\n         </xsl:element>\n   </xsl:template>\n   \n   <xsl:template match=\"new-property-3\">\n         <xsl:element name=\"new-xform-property-3\">\n               <xsl:apply-templates select=\"@* | node()\" />\n         </xsl:element>\n   </xsl:template>\n   \n   <xsl:template match=\"new-property-4\">\n         <xsl:element name=\"new-xform-property-4\">\n               <xsl:apply-templates select=\"@* | node()\" />\n         </xsl:element>\n   </xsl:template>\n\n</xsl:stylesheet>"
+            - operations:
+                - verb: get
+                  path: /throwError
+              execute:
+                - throw:
+                    title: throw
+                    version: 1.0.0
+                    name: newError
+                    message: New Error Message
+          otherwise: []
+          version: 1.0.0
+    catch:
+      - errors:
+          - newError
+        execute:
+          - xslt:
+              title: xslt
+              input: false
+              version: 1.0.0
+              source: >-
+                <?xml version="1.0" ?>
+
+                <xsl:stylesheet version="1.0"
+
+                  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+
+
+                   <!-- IdentityTransform -->
+
+                   <xsl:template match="/">
+
+                         <xml>
+
+                            <myNewErrorMessage>Just Showing the catch
+                works</myNewErrorMessage>
+
+                         </xml>
+
+                   </xsl:template>
+
+
+
+                </xsl:stylesheet>
+  gateway: datapower-gateway
+  phase: realized
+paths:
+  /:
+    post:
+      responses:
+        '200':
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/sampleXFormObject'
+      parameters:
+        - name: api_parameter-1
+          required: false
+          in: body
+          schema:
+            $ref: '#/definitions/sampleOjbect'
+  /throwError:
+    get:
+      responses:
+        '200':
+          description: 200 OK
+definitions:
+  sampleOjbect:
+    properties:
+      new-property-1:
+        type: string
+      new-property-2:
+        properties: {}
+        type: string
+      new-property-3:
+        properties: {}
+        type: string
+      new-property-4:
+        properties: {}
+        type: string
+    additionalProperties: false
+  sampleXFormObject:
+    properties:
+      new-xform-property-1:
+        properties: {}
+        type: string
+      new-xform-property-2:
+        properties: {}
+        type: string
+      new-xform-property-3:
+        properties: {}
+        type: string
+      new-xform-property-4:
+        properties: {}
+        type: string
+    additionalProperties: false
+tags: []

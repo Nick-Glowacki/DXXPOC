@@ -1,0 +1,23 @@
+product: 1.0.0
+info:
+  name: think-inventory
+  title: Think Inventory
+  version: 1.0.0
+visibility:
+  view:
+    type: public
+  subscribe:
+    type: authenticated
+plans:
+  default:
+    title: Default Plan
+    description: Default Plan
+    approval: false
+    rate-limit:
+      value: 100/hour
+      hard-limit: false
+apis:
+  inventory:
+    $ref: inventory_2.0.0.yaml
+  oauth:
+    $ref: oauth_1.0.0.yaml

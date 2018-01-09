@@ -1,0 +1,150 @@
+type: bluemix
+server:
+  displayName: US South
+  name: us-south
+  host: us.apiconnect.ibmcloud.com
+org:
+  id: 59e90d130cf2852274d1dd34
+  name: nickglowacki-dtcc-poc
+  displayName: Nick.Glowacki (DTCC PoC)
+  orgType: apiProvider
+  status: active
+  advPortalOverride: true
+  extUaaAuthenticated: false
+  requiresSSLClientCertCheck: false
+  dormant: false
+  url: 'https://us.apiconnect.ibmcloud.com/v1/orgs/59e90d130cf2852274d1dd34'
+  externalOrgId: 35b12704-dd47-4045-86f9-9a83e9555249
+  externalInviteOverride: 'https://console.bluemix.net/apis/catalog/invitation?env_id=ibm:yp:us-south'
+  externalSpaceId: 35b12704-dd47-4045-86f9-9a83e9555249
+  externalNativeOrgId: b155db8b-ec4f-43ba-a7bc-d87d27c36cdf
+  bluemix:
+    inviteUri: 'https://console.bluemix.net/apis/catalog/invitation?env_id=ibm:yp:us-south'
+    organization: b155db8b-ec4f-43ba-a7bc-d87d27c36cdf
+    space: 35b12704-dd47-4045-86f9-9a83e9555249
+catalog:
+  id: 59e90d130cf2852274d1dd40
+  orgId: 59e90d130cf2852274d1dd34
+  name: Sandbox
+  shortName: sb
+  owner:
+    id: 583d97bc0cf27301cce65bb0
+    username: Nick.Glowacki@ibm.com
+    context: apimanager
+    idpId: 58341db4e63b1219f0f068d1
+    email: Nick.Glowacki@ibm.com
+    firstName: Nick Glowacki
+    lastName: ''
+    status: ACTIVE
+    lastLoginTime: '2017-10-30T14:55:41.831+0000'
+    url: 'https://us.apiconnect.ibmcloud.com/v1/users/583d97bc0cf27301cce65bb0'
+  apiCenter: false
+  portalType: ADVANCED
+  portalUrl: 'https://developer.us.apiconnect.ibmcloud.com/nickglowacki-dtcc-poc/sb'
+  customPortalUrl: 'https://developer.us.apiconnect.ibmcloud.com/nickglowacki-dtcc-poc/sb'
+  advPortalUrl: 'https://sb-nickglowacki-dtcc-poc.developer.us.apiconnect.ibmcloud.com'
+  gatewayType: DataPowerGateway
+  gwServices:
+    - id: PRODAPIC_APIMGMT_GATEWAY
+      endpointUrl: 'https://api.us.apiconnect.ibmcloud.com/nickglowacki-dtcc-poc/sb'
+  idp: 59e90d150cf2852274d1dd43
+  idps:
+    - 59e90d150cf2852274d1dd43
+  availableRoles:
+    - viewer
+    - developer
+  default: false
+  autoDeploy: true
+  restrictedDeployment: false
+  invitationEnabled: true
+  selfSignUpEnabled: true
+  spaceEnabled: false
+  spaceIds:
+    - 59e90d150cf2852274d1dd4b
+  testAppEnabled: true
+  testAppCredentials:
+    clientId: 753ac97f-a431-4497-a684-42ba45899076
+    clientSecret: Q4wU1kC4vC3xA1mR1rX2rA3dA4eQ2dH8kF4cS6xK6rY7rN6oT5
+  createdAt: '2017-10-19T20:37:41.380+0000'
+  updatedAt: '2017-10-30T13:31:21.921+0000'
+  createdBy: apim-ops@wwpdl.vnet.ibm.com
+  updatedBy: Nick.Glowacki@ibm.com
+  url: >-
+    https://us.apiconnect.ibmcloud.com/v1/orgs/59e90d130cf2852274d1dd34/environments/59e90d130cf2852274d1dd40
+  applicationLifecycleEnabled: false
+  productDeploymentApprovalRequiredStates: []
+  orgName: nickglowacki-dtcc-poc
+space:
+  none: true
+app:
+  metadata:
+    guid: bec5124f-6cbc-4732-b862-29bbe94762b9
+  entity:
+    guid: bec5124f-6cbc-4732-b862-29bbe94762b9
+    name: inventory
+    routes:
+      - guid: 3df521eb-944f-4374-8663-ee4cd5f424a5
+        host: apiconnect-bec5124f-6cbc-4732-b862-29bbe94762b9
+        port: null
+        path: ''
+        domain:
+          guid: e2532b41-e3cf-4137-8331-80aa36a71e86
+          name: nickglowacki-dtcc-poc.apic.mybluemix.net
+    running_instances: 0
+    services: []
+    available_domains:
+      - guid: e2532b41-e3cf-4137-8331-80aa36a71e86
+        name: nickglowacki-dtcc-poc.apic.mybluemix.net
+        owning_organization_guid: b155db8b-ec4f-43ba-a7bc-d87d27c36cdf
+      - guid: d6550b8a-0221-41e0-af8e-8c67bfe6b711
+        name: nickglowacki-dev.apic.mybluemix.net
+        owning_organization_guid: b155db8b-ec4f-43ba-a7bc-d87d27c36cdf
+      - guid: f4b90d7e-2cd3-4d30-b200-f28bbaf6be20
+        name: mybluemix.net
+        router_group_guid: null
+        router_group_type: null
+    production: false
+    space_guid: 35b12704-dd47-4045-86f9-9a83e9555249
+    stack_guid: ac91d31a-86a3-453b-babf-8d49c9d763fc
+    buildpack: null
+    detected_buildpack: null
+    detected_buildpack_guid: null
+    environment_json: {}
+    memory: 256
+    instances: 1
+    disk_quota: 1024
+    state: STOPPED
+    version: aa0d2559-1a78-4d08-96e6-99904912c65a
+    command: null
+    console: false
+    debug: null
+    staging_task_id: null
+    package_state: PENDING
+    health_check_type: port
+    health_check_timeout: null
+    health_check_http_endpoint: null
+    staging_failed_reason: null
+    staging_failed_description: null
+    diego: true
+    docker_image: null
+    package_updated_at: '2017-10-30T17:19:53Z'
+    detected_start_command: ''
+    enable_ssh: true
+    docker_credentials_json:
+      redacted_message: '[PRIVATE DATA HIDDEN]'
+    ports: null
+id: 122268f6-cd58-44dd-9924-8e9bf221578b
+target: 1.0.0
+versionOptions:
+  inplaceUpdate: true
+publishApp: true
+publishProducts: true
+workspaceDir:
+  name: inventory
+  path: /Users/6d1436/Documents/Sales/Clients/DTCC/PoC/code/inventory
+  id: 3
+  templateName: empty-server
+  version: 2.x
+  displayName: inventory
+  type: project
+  projectType: loopback

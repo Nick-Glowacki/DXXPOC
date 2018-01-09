@@ -1,0 +1,33 @@
+product: 1.0.0
+info:
+  name: transform
+  title: Transform
+  version: 1.0.0
+visibility:
+  view:
+    enabled: true
+    type: public
+    tags: []
+    orgs: []
+  subscribe:
+    enabled: true
+    type: authenticated
+    tags: []
+    orgs: []
+apis:
+  questionaire:
+    $ref: questionaire_1.0.0.yaml
+  xslexample:
+    $ref: xslexample_1.0.0.yaml
+  xml2json:
+    $ref: xml2json_1.0.0.yaml
+  json2xml:
+    $ref: json2xml_1.0.0.yaml
+plans:
+  default:
+    title: Default Plan
+    description: Default Plan
+    approval: false
+    rate-limit:
+      hard-limit: false
+      value: 100/hour

@@ -1,0 +1,238 @@
+swagger: '2.0'
+info:
+  title: ServiceControllerService
+  description: ''
+  x-ibm-name: servicecontrollerservice
+  version: 1.0.0
+schemes:
+  - https
+basePath: /ServiceControllerService
+produces:
+  - application/xml
+consumes:
+  - text/xml
+securityDefinitions:
+  clientID:
+    type: apiKey
+    name: X-IBM-Client-Id
+    in: header
+    description: ''
+security:
+  - clientID: []
+x-ibm-configuration:
+  type: wsdl
+  wsdl-definition:
+    wsdl: servicecontrollerservice_1.0.0.wsdl
+    service: ServiceControllerService
+    port: CFGServicesController
+    soap-version: '1.1'
+  assembly:
+    execute:
+      - proxy:
+          title: proxy
+          target-url: 'https://api.us.apiconnect.ibmcloud.com/nickglowacki-dtcc-poc/mocbackends/ServiceControllerService'
+    catch: []
+  gateway: datapower-gateway
+  enforced: true
+  testable: true
+  phase: realized
+  cors:
+    enabled: true
+paths:
+  /execute:
+    post:
+      summary: Operation execute
+      description: ''
+      operationId: execute
+      x-ibm-soap:
+        soap-action: ''
+        soap-operation: '{http://www.thebank.com/schemas/CFX/}execute'
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            $ref: '#/definitions/executeInput'
+      responses:
+        default:
+          description: ''
+          schema:
+            $ref: '#/definitions/executeOutput'
+definitions:
+  Security:
+    xml:
+      namespace: 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'
+      prefix: wsse
+    type: object
+    properties:
+      UsernameToken:
+        xml:
+          namespace: 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'
+          prefix: wsse
+        type: object
+        properties:
+          Username:
+            xml:
+              namespace: 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'
+              prefix: wsse
+            type: string
+          Password:
+            xml:
+              namespace: 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'
+              prefix: wsse
+            type: string
+          Nonce:
+            xml:
+              namespace: 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd'
+              prefix: wsse
+            type: string
+            properties:
+              EncodingType:
+                xml:
+                  namespace: ''
+                  attribute: true
+                type: string
+          Created:
+            xml:
+              namespace: 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'
+              prefix: wsu
+            type: string
+      Timestamp:
+        xml:
+          namespace: 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'
+          prefix: wsu
+        type: object
+        properties:
+          Created:
+            xml:
+              namespace: 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'
+              prefix: wsu
+            type: string
+          Expires:
+            xml:
+              namespace: 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'
+              prefix: wsu
+            type: string
+          Id:
+            xml:
+              namespace: 'http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd'
+              prefix: wsu
+              attribute: true
+            type: string
+  executeInput:
+    type: object
+    properties:
+      Envelope:
+        xml:
+          prefix: soapenv
+          namespace: 'http://schemas.xmlsoap.org/soap/envelope/'
+        type: object
+        properties:
+          Header:
+            $ref: '#/definitions/executeHeader'
+          Body:
+            type: object
+            properties:
+              execute:
+                $ref: '#/definitions/execute_impl'
+            required:
+              - execute
+        required:
+          - Body
+    required:
+      - Envelope
+    example: >-
+      <soapenv:Envelope
+      xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+
+       <soapenv:Header>
+
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd"
+      xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+
+         <wsse:UsernameToken>
+
+          <wsse:Username>string</wsse:Username>
+
+          <wsse:Password>string</wsse:Password>
+
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+
+          <wsu:Created>string</wsu:Created>
+
+         </wsse:UsernameToken>
+
+         <wsu:Timestamp wsu:Id="string">
+
+          <wsu:Created>string</wsu:Created>
+
+          <wsu:Expires>string</wsu:Expires>
+
+         </wsu:Timestamp>
+
+        </wsse:Security>
+
+       </soapenv:Header>
+
+       <soapenv:Body>
+
+        <impl:execute xmlns:impl="http://www.thebank.com/schemas/CFX/"><!--
+      mandatory -->string</impl:execute>
+
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  executeHeader:
+    type: object
+    properties:
+      Security:
+        $ref: '#/definitions/Security'
+  executeOutput:
+    type: object
+    properties:
+      Envelope:
+        xml:
+          prefix: soapenv
+          namespace: 'http://schemas.xmlsoap.org/soap/envelope/'
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              executeReturn:
+                $ref: '#/definitions/executeReturn_impl'
+        required:
+          - Body
+    required:
+      - Envelope
+    example: >-
+      <soapenv:Envelope
+      xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+
+       <soapenv:Body>
+
+        <impl:executeReturn
+      xmlns:impl="http://www.thebank.com/schemas/CFX/">string</impl:executeReturn>
+
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  execute_impl:
+    xml:
+      namespace: 'http://www.thebank.com/schemas/CFX/'
+      prefix: impl
+    type: string
+    example: |-
+
+      <impl:execute>string
+      </impl:execute>
+  executeReturn_impl:
+    xml:
+      namespace: 'http://www.thebank.com/schemas/CFX/'
+      prefix: impl
+    type: string
+    example: |-
+
+      <impl:executeReturn>string
+      </impl:executeReturn>

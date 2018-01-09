@@ -1,0 +1,67 @@
+swagger: '2.0'
+info:
+  x-ibm-name: redaction
+  title: Redaction
+  version: 1.0.0
+schemes:
+  - https
+host: $(catalog.host)
+basePath: /redaction
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+security:
+  - clientIdHeader: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  assembly:
+    execute:
+      - redact:
+          title: redact
+          actions:
+            - action: remove
+              from:
+                - all
+              path: "//*[@name='reallySensitive']"
+          version: 1.0.0
+    catch: []
+  phase: realized
+paths:
+  /:
+    post:
+      responses:
+        '200':
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/redactObj'
+    parameters:
+      - name: redactRequest
+        required: false
+        in: body
+        schema:
+          $ref: '#/definitions/redactObj'
+definitions:
+  redactObj:
+    properties:
+      notSensitive:
+        type: string
+      reallyNotSensitive:
+        properties: {}
+        type: string
+      kindOfSensitive:
+        properties: {}
+        type: string
+      reallySensitive:
+        properties: {}
+        type: string
+    additionalProperties: false
+tags: []

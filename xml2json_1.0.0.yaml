@@ -1,0 +1,62 @@
+swagger: '2.0'
+info:
+  x-ibm-name: xml2json
+  title: xml2json
+  version: 1.0.0
+schemes:
+  - https
+host: $(catalog.host)
+basePath: /xml2json
+consumes:
+  - application/xml
+produces:
+  - application/json
+securityDefinitions:
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+security:
+  - clientIdHeader: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  cors:
+    enabled: true
+  assembly:
+    execute:
+      - xml-to-json:
+          title: xml-to-json
+          version: 1.0.0
+    catch: []
+  phase: realized
+paths:
+  /:
+    post:
+      responses:
+        '200':
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/new-definition-1'
+      parameters:
+        - name: api_parameter-1
+          required: false
+          in: body
+          schema:
+            $ref: '#/definitions/new-definition-1'
+definitions:
+  new-definition-1:
+    properties:
+      new-property-1:
+        type: string
+      new-property-2:
+        properties: {}
+        type: string
+      new-property-3:
+        properties: {}
+        type: string
+      new-property-4:
+        properties: {}
+        type: string
+    additionalProperties: false
+tags: []

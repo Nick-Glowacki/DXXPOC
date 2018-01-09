@@ -1,0 +1,35 @@
+product: 1.0.0
+info:
+  name: redact
+  title: Redact
+  version: 1.0.0
+visibility:
+  view:
+    enabled: true
+    type: public
+    tags: []
+    orgs: []
+  subscribe:
+    enabled: true
+    type: authenticated
+    tags: []
+    orgs: []
+apis:
+  redaction:
+    $ref: redaction_1.0.0.yaml
+plans:
+  silver:
+    title: Silver
+    approval: true
+    apis: {}
+    rate-limits:
+      rate-limit-1:
+        hard-limit: false
+        value: 50/1hour
+  gold:
+    title: Gold
+    description: Gold Plan
+    approval: true
+    rate-limit:
+      hard-limit: false
+      value: 100/hour
