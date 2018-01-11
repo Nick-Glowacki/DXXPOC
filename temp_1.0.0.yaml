@@ -41,5 +41,9 @@ paths:
       responses:
         '200':
           description: 200 OK
+    put:
+      responses:
+        '200':
+          description: 200 OK
 definitions: {}
 tags: []
